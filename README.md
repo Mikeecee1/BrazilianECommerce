@@ -1,5 +1,25 @@
 # Olist Data Engineering Project
 
+<details>
+<summary>Table of Contents</summary>
+
+- [Project Overview](#project-overview)
+- [Dataset](#dataset)
+- [Schema & ERD](#schema--erd)
+- [Technologies Used](#technologies-used)
+- [Project Objectives](#project-objectives)
+- [Database Design](#database-design)
+- [Project Structure](#project-structure)
+- [Data Cleaning](#data-cleaning)
+- [SQL Features](#sql-features)
+- [Example Analysis](#example-analysis)
+- [Performance Optimisation](#performance-optimisation)
+- [Future Improvements](#future-improvements)
+- [Collaborators](#collaborators)
+- [Acknowledgements](#acknowledgements)
+
+</details>
+
 ## Project Overview
 
 This project uses the Brazilian E-commerce Public Dataset by Olist to design, build and analyse a relational database using Microsoft SQL Server.
@@ -171,6 +191,45 @@ Relationships are enforced using Primary Keys and Foreign Keys.
 
 ## Project Structure
 
+```text
+BrazilianECommerce/
+├── Data/
+│   ├── Cleaned/
+│   │   ├── customers.csv
+│   │   ├── geolocation.csv
+│   │   ├── orders.csv
+│   │   ├── order_items.csv
+│   │   ├── order_payments.csv
+│   │   ├── order_reviews.csv
+│   │   ├── products.csv
+│   │   └── sellers.csv
+│   └── Raw/
+│       ├── olist_customers_dataset.csv
+│       ├── olist_geolocation_dataset.csv
+│       ├── olist_orders_dataset.csv
+│       ├── olist_order_items_dataset.csv
+│       ├── olist_order_payments_dataset.csv
+│       ├── olist_order_reviews_dataset.csv
+│       ├── olist_products_dataset.csv
+│       ├── olist_sellers_dataset.csv
+│       └── product_category_name_translation.csv
+├── Notebooks/
+│   └── ETL.ipynb
+├── Screenshots/
+│   ├── CustomerSatisfaction.png
+│   ├── MonthlySales.png
+│   ├── Top10Customers.png
+│   ├── Top10Products.png
+│   └── Top10Sellers.png
+├── SQL/
+│   ├── CreationScript.sql
+│   ├── deleteOlist.sql
+│   └── OlistECommerce_Setup.sql
+├── README.md
+├── requirements.txt
+├── SchemaERD.md
+└── SQLScript.sql
+```
 
 ---
 
@@ -217,6 +276,25 @@ Examples of business questions answered:
 - Revenue by product category
 - Average review scores
 - Seller performance
+
+### Example Outputs
+
+***Top 10 Customers by Revenue***
+![Top 10 Customers](Screenshots/Top10Customers.png)
+
+***Top 10 Products by Revenue***
+![Top 10 Products](Screenshots/Top10Products.png)
+
+***Top 10 Sellers by Revenue***
+![Top 10 Sellers](Screenshots/Top10Sellers.png)
+
+***Monthly Sales Breakdown***
+![Monthly Sales](Screenshots/MonthlySales.png)
+
+***Customer satisfaction by order status***
+![Customer Satisfaction](Screenshots/CustomerSatisfaction.png)
+
+
 
 ---
 
