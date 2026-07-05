@@ -77,29 +77,6 @@ Relationships are enforced using Primary Keys and Foreign Keys.
 
 ## Project Structure
 
-```
-olist-data-engineering-project/
-
-│
-├── data/
-│   ├── olist_customers_dataset.csv
-│   ├── olist_orders_dataset.csv
-│   ├── olist_products_dataset.csv
-│   ├── ...
-│
-├── sql/
-│   ├── create_tables.sql
-│   ├── insert_data.sql
-│   ├── indexes.sql
-│   ├── analysis_queries.sql
-│
-├── images/
-│   ├── ERD.png
-│
-├── Olist.project.py
-│
-├── README.md
-```
 
 ---
 
