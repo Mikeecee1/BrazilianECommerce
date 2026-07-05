@@ -11,6 +11,28 @@
 *.sln.docstates
 *.env
 
+# Python virtual environments and caches
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Common Python packaging outputs
+build/
+dist/
+*.egg-info/
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
