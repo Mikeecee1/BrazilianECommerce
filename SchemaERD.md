@@ -139,7 +139,9 @@ Stores seller information.
 # Entity Relationship Diagram (ERD)
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'background': '#ffffff', 'primaryColor': '#ffffff', 'secondaryColor': '#ffffff', 'tertiaryColor': '#ffffff' }}}%%
 erDiagram
+    direction LR
 
     CUSTOMERS {
         string customer_id PK

@@ -31,6 +31,100 @@ The project uses the following datasets:
 
 ---
 
+## SCHEMA & ERD
+
+The database is structured around customers, orders, order items, products, sellers, payments, reviews, and geolocation data.
+
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'background': '#ffffff', 'primaryColor': '#ffffff', 'secondaryColor': '#ffffff', 'tertiaryColor': '#ffffff' }}}%%
+erDiagram
+	direction LR
+
+	CUSTOMERS {
+		string customer_id PK
+		string customer_unique_id
+		int customer_zip_code_prefix FK
+		string customer_city
+		string customer_state
+	}
+
+	GEOLOCATION {
+		int geolocation_zip_code_prefix PK
+		float geolocation_lat
+		float geolocation_lng
+		string geolocation_city
+		string geolocation_state
+	}
+
+	ORDERS {
+		string order_id PK
+		string customer_id FK
+		string order_status
+		datetime order_purchase_timestamp
+		datetime order_approved_at
+		datetime order_delivered_carrier_date
+		datetime order_delivered_customer_date
+		datetime order_estimated_delivery_date
+	}
+
+	ORDER_ITEMS {
+		string order_id FK
+		int order_item_id PK
+		string product_id FK
+		string seller_id FK
+		datetime shipping_limit_date
+		decimal price
+		decimal freight_value
+	}
+
+	ORDER_PAYMENTS {
+		string order_id FK
+		int payment_sequential PK
+		string payment_type
+		int payment_installments
+		decimal payment_value
+	}
+
+	ORDER_REVIEWS {
+		string review_id PK
+		string order_id FK
+		int review_score
+		string review_comment_title
+		string review_comment_message
+		datetime review_creation_date
+		datetime review_answer_timestamp
+	}
+
+	PRODUCTS {
+		string product_id PK
+		string product_category_name
+		int product_name_lenght
+		int product_description_lenght
+		int product_photos_qty
+		decimal product_weight_g
+		decimal product_length_cm
+		decimal product_height_cm
+		decimal product_width_cm
+	}
+
+	SELLERS {
+		string seller_id PK
+		int seller_zip_code_prefix FK
+		string seller_city
+		string seller_state
+	}
+
+	GEOLOCATION ||--o{ CUSTOMERS : lives_in
+	GEOLOCATION ||--o{ SELLERS : located_in
+	CUSTOMERS ||--o{ ORDERS : places
+	ORDERS ||--|{ ORDER_ITEMS : contains
+	PRODUCTS ||--o{ ORDER_ITEMS : includes
+	SELLERS ||--o{ ORDER_ITEMS : fulfills
+	ORDERS ||--o{ ORDER_PAYMENTS : paid_by
+	ORDERS ||--o| ORDER_REVIEWS : reviewed
+```
+---
+
 ## Technologies Used
 
 - Python
@@ -91,6 +185,7 @@ Cleaning included:
 - Validating primary keys
 - Standardising column formats
 - Ensuring referential integrity
+- Converted Portuguese product categories to English
 
 ---
 
@@ -157,6 +252,14 @@ https://github.com/alina951
 
 LinkedIn:
 https://www.linkedin.com/in/alina-arus-6a18a0319/
+
+**Mike Cooksley**
+
+[Github](https://github.com/Mikeecee1)
+
+[LinkedIn](https://www.linkedin.com/in/michael-cooksley/)
+
+
 
 ---
 
