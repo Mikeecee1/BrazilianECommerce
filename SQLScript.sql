@@ -243,7 +243,82 @@ FROM order_reviews_import;
 
 
 /*========================
-  Analysis Queries
+  ANALYTICS QUERIES
 =========================*/
 
+/*TOP TEN PRODUCTS BY REVENUE*/
+SELECT TOP 10
+    p.product_category_name,
+    COUNT(oi.order_id) AS Orders,
+    SUM(oi.price) AS TotalRevenue,
+    AVG(oi.price) AS AveragePrice
+FROM Products p
+INNER JOIN Order_Items oi
+    ON p.product_id = oi.product_id
+GROUP BY p.product_category_name
+ORDER BY TotalRevenue DESC;
 
+/*TOP TEN SELLERS BY REVENUE*/
+SELECT TOP 10
+    s.seller_id,
+    s.seller_city,
+    s.seller_state,
+    COUNT(DISTINCT oi.order_id) AS OrdersProcessed,
+    SUM(oi.price) AS TotalSales,
+    AVG(oi.price) AS AverageSaleValue
+FROM Sellers s
+INNER JOIN Order_Items oi
+    ON s.seller_id = oi.seller_id
+GROUP BY
+    s.seller_id,
+    s.seller_city,
+    s.seller_state
+ORDER BY TotalSales DESC;
+
+/*MONTHLY SALES TREND*/
+SELECT
+    YEAR(o.order_purchase_timestamp) AS SalesYear,
+    MONTH(o.order_purchase_timestamp) AS SalesMonth,
+    COUNT(DISTINCT o.order_id) AS Orders,
+    SUM(oi.price) AS Revenue
+FROM Orders o
+INNER JOIN Order_Items oi
+    ON o.order_id = oi.order_id
+GROUP BY
+    YEAR(o.order_purchase_timestamp),
+    MONTH(o.order_purchase_timestamp)
+ORDER BY
+    SalesYear,
+    SalesMonth;
+
+    /*CUSTOMER SATISFACTION BY ORDER STATUS*/
+    SELECT
+    o.order_status,
+    COUNT(DISTINCT o.order_id) AS Orders,
+    AVG(CAST(r.review_score AS DECIMAL(3,2))) AS AverageReviewScore
+FROM Orders o
+LEFT JOIN Order_Reviews r
+    ON o.order_id = r.order_id
+GROUP BY
+    o.order_status
+ORDER BY
+    AverageReviewScore DESC;
+
+    /*TOP TEN SPENDING CUSTOMERS*/
+    SELECT TOP 10
+    c.customer_unique_id,
+    c.customer_city,
+    c.customer_state,
+    COUNT(DISTINCT o.order_id) AS TotalOrders,
+    SUM(op.payment_value) AS TotalSpent
+FROM Customers c
+INNER JOIN Orders o
+    ON c.customer_id = o.customer_id
+INNER JOIN Order_Payments op
+    ON o.order_id = op.order_id
+GROUP BY
+    c.customer_unique_id,
+    c.customer_city,
+    c.customer_state
+ORDER BY
+    TotalSpent DESC;
