@@ -1,1 +1,0 @@
-DROP TABLE Order_Reviews_Import;
